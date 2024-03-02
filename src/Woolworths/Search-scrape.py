@@ -43,7 +43,7 @@ def scrape_products(search_terms, get_nutrition_info = False, save_images = Fals
             except TimeoutException:
                 pass
 
-            page_data = execute_script('scrape_products.js')
+            page_data = execute_script('../Coles/scrape_products.js')
 
             if save_images or get_nutrition_info:
                 for product in page_data['products']:
