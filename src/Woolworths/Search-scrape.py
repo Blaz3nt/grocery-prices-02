@@ -81,6 +81,6 @@ def scrape_products(search_terms, get_nutrition_info = False, save_images = Fals
         save_json(filename, data[term])
 
 if __name__ == '__main__':
-    print(f"Start scrap for {search_terms}")
+    print(f"Start scrap")
     search_terms = ['milk']  # Example search terms
     scrape_products(search_terms)
