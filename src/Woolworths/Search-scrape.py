@@ -4,8 +4,21 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 
-browser = webdriver.Chrome()
+# Variable to control headless mode
+headless_mode = True  # Change this to False if you want to see the GUI
+
+# Configure Chrome options
+chrome_options = Options()
+if headless_mode:
+    chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--disable-gpu")
+
+# Initialize the Chrome driver with options
+browser = webdriver.Chrome(options=chrome_options)
 base_url = 'https://www.woolworths.com.au/shop/search/products?searchTerm='
 
 def execute_script(filename):
@@ -68,5 +81,6 @@ def scrape_products(search_terms, get_nutrition_info = False, save_images = Fals
         save_json(filename, data[term])
 
 if __name__ == '__main__':
+    print(f"Start scrap for {search_terms}")
     search_terms = ['milk']  # Example search terms
     scrape_products(search_terms)
